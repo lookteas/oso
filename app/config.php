@@ -254,10 +254,10 @@ $configs= [
 	//验证码
 	'verify'=>[
 		'fontSize' => 20,
-		'fontttf'=>'1.ttf',
+		'fontttf'=>'4.ttf',
 		'imageH' => 42,
-		'imageW' => 180,
-		'length' => 5,
+		'imageW' => 160,
+		'length' => 4,
         'useZh'    => false,
 		'useCurve' => false,
 	],
