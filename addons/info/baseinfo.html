@@ -1,9 +1,10 @@
+<script src="__PUBLIC__/others/echarts.min.js"></script>
 <div class="widget-box sl-indextop10 text-left">
         <div class="widget-box transparent">
             <div class="widget-header widget-header-flat">
                 <h4 class="widget-title lighter">
                     <i class="ace-icon fa fa-signal"></i>
-                    Sale Stats
+                    统计分析
                 </h4>
 
                 <div class="widget-toolbar">
@@ -15,7 +16,43 @@
 
             <div class="widget-body">
                 <div class="widget-main padding-4">
-                    <div id="sales-charts" style="width: 100%; height: 220px; padding: 0px; position: relative;"><canvas class="flot-base" width="511" height="220" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 511px; height: 220px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 201px; left: 33px; text-align: center;">0.0</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 201px; left: 107px; text-align: center;">1.0</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 201px; left: 181px; text-align: center;">2.0</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 201px; left: 256px; text-align: center;">3.0</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 201px; left: 330px; text-align: center;">4.0</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 201px; left: 404px; text-align: center;">5.0</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 201px; left: 479px; text-align: center;">6.0</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 187px; left: 1px; text-align: right;">-2.000</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 164px; left: 1px; text-align: right;">-1.500</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 140px; left: 1px; text-align: right;">-1.000</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 117px; left: 1px; text-align: right;">-0.500</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 94px; left: 5px; text-align: right;">0.000</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 70px; left: 5px; text-align: right;">0.500</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 47px; left: 5px; text-align: right;">1.000</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 23px; left: 5px; text-align: right;">1.500</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 0px; left: 5px; text-align: right;">2.000</div></div></div><canvas class="flot-overlay" width="511" height="220" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 511px; height: 220px;"></canvas><div class="legend"><div style="position: absolute; width: 70px; height: 66px; top: 14px; right: 14px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div><table style="position:absolute;top:14px;right:14px;;font-size:smaller;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(237,194,64);overflow:hidden"></div></div></td><td class="legendLabel">Domains</td></tr><tr><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(175,216,248);overflow:hidden"></div></div></td><td class="legendLabel">Hosting</td></tr><tr><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(203,75,75);overflow:hidden"></div></div></td><td class="legendLabel">Services</td></tr></tbody></table></div></div>
+                    <div id="main" style="width:90%;height:500px;"></div>
+                    <script type="text/javascript">
+                        // 基于准备好的dom，初始化echarts实例
+                        var myChart = echarts.init(document.getElementById('main'));
+
+                        // 指定图表的配置项和数据
+                        var option = {
+                            title: {
+                                text: '站点信息演示'
+                            },
+                            tooltip: {},
+                            legend: {
+                                data:['评论量']
+                            },
+//                            xAxis: {
+//                                data: ["新增会员","访问量","评论数","活跃用户","发帖量"]
+//                            },
+//                            yAxis: {},
+                            series: [
+                                {
+                                    name: '访问来源',
+                                    type: 'pie',
+                                    radius: '55%',
+                                    data:[
+                                        {value:235, name:'新增会员'},
+                                        {value:274, name:'评论数'},
+                                        {value:310, name:'活跃用户'},
+                                        {value:335, name:'直接访问'},
+                                        {value:400, name:'搜索引擎'}
+                                    ]
+                                }
+                            ]
+                        };
+
+                        // 使用刚指定的配置项和数据显示图表。
+                        myChart.setOption(option);
+                    </script>
                 </div><!-- /.widget-main -->
             </div><!-- /.widget-body -->
         </div><!-- /.widget-box -->
