@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeType - 专业编程打字练习</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部导航 -->
+        <header class="header">
+            <div class="logo">
+                <h1>CodeType</h1>
+                <span class="tagline">专业编程打字练习平台</span>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" data-mode="practice">练习模式</button>
+                <button class="nav-btn" data-mode="test">测试模式</button>
+                <button class="nav-btn" data-mode="stats">统计数据</button>
+            </nav>
+        </header>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            <!-- 统计面板 -->
+            <div class="stats-panel">
+                <div class="stat-item">
+                    <div class="stat-value" id="wpm">0</div>
+                    <div class="stat-label">WPM</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="accuracy">100%</div>
+                    <div class="stat-label">准确率</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="time">00:00</div>
+                    <div class="stat-label">用时</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="errors">0</div>
+                    <div class="stat-label">错误</div>
+                </div>
+            </div>
+
+            <!-- 打字练习区域 -->
+            <div class="typing-area">
+                <div class="text-display" id="textDisplay">
+                    <span class="text-content" id="textContent"></span>
+                </div>
+                <div class="input-area">
+                    <textarea 
+                        id="typingInput" 
+                        placeholder="开始打字练习..." 
+                        autocomplete="off" 
+                        autocorrect="off" 
+                        autocapitalize="off" 
+                        spellcheck="false"
+                    ></textarea>
+                </div>
+            </div>
+
+            <!-- 控制面板 -->
+            <div class="control-panel">
+                <div class="difficulty-selector">
+                    <label>练习类型：</label>
+                    <select id="practiceTypeSelect">
+                        <option value="vocabulary">词汇练习</option>
+                        <option value="document">技术文档</option>
+                    </select>
+                </div>
+                <div class="difficulty-selector" id="vocabularyOptions">
+                    <label>难度选择：</label>
+                    <select id="difficultySelect">
+                        <option value="basic">基础词汇</option>
+                        <option value="intermediate">中级词汇</option>
+                        <option value="advanced">高级词汇</option>
+                        <option value="code">代码片段</option>
+                    </select>
+                </div>
+                <div class="difficulty-selector" id="documentOptions" style="display: none;">
+                    <label>文档选择：</label>
+                    <select id="documentSelect">
+                        <option value="software-documentation">软件文档最佳实践</option>
+                        <option value="programming-methodologies">编程方法论与文档</option>
+                        <option value="software-development-lifecycle">软件开发生命周期</option>
+                        <option value="algorithms-data-structures">算法与数据结构</option>
+                    </select>
+                </div>
+                <div class="control-buttons">
+                    <button id="startBtn" class="btn btn-primary">开始练习</button>
+                    <button id="resetBtn" class="btn btn-secondary">重新开始</button>
+                    <button id="pauseBtn" class="btn btn-secondary" disabled>暂停</button>
+                </div>
+            </div>
+
+            <!-- 结果面板 -->
+            <div class="results-panel" id="resultsPanel" style="display: none;">
+                <h3>练习结果</h3>
+                <div class="result-stats">
+                    <div class="result-item">
+                        <span class="result-label">打字速度：</span>
+                        <span class="result-value" id="finalWPM">0 WPM</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">准确率：</span>
+                        <span class="result-value" id="finalAccuracy">100%</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">总用时：</span>
+                        <span class="result-value" id="finalTime">00:00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">错误次数：</span>
+                        <span class="result-value" id="finalErrors">0</span>
+                    </div>
+                </div>
+                <button id="continueBtn" class="btn btn-primary">继续练习</button>
+            </div>
+        </main>
+
+        <!-- 统计数据页面 -->
+        <div class="stats-page" id="statsPage" style="display: none;">
+            <h2>练习统计</h2>
+            <div class="stats-grid">
+                <div class="stats-card">
+                    <h3>今日练习</h3>
+                    <div class="stats-content">
+                        <p>练习次数: <span id="todayCount">0</span></p>
+                        <p>平均WPM: <span id="todayAvgWPM">0</span></p>
+                        <p>最高WPM: <span id="todayMaxWPM">0</span></p>
+                    </div>
+                </div>
+                <div class="stats-card">
+                    <h3>历史最佳</h3>
+                    <div class="stats-content">
+                        <p>最高WPM: <span id="bestWPM">0</span></p>
+                        <p>最高准确率: <span id="bestAccuracy">0%</span></p>
+                        <p>总练习时间: <span id="totalTime">0分钟</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="history-section">
+                <h3>练习历史</h3>
+                <div class="history-list" id="historyList">
+                    <!-- 历史记录将在这里动态生成 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="documents.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
